@@ -1,0 +1,16 @@
+### Windows
+# Windows thumbnail cache files
+Thumbs.db
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows shortcuts
+*.lnk
+yum_yum_basket/venv/
+yum_yum_basket/.idea/
+yum_yum_basket/__pycache__/
+yum_yum_basket/*.pyc
