@@ -14,3 +14,6 @@ yum_yum_basket/venv/
 yum_yum_basket/.idea/
 yum_yum_basket/__pycache__/
 yum_yum_basket/*.pyc
+yum_yum_basket/__pycache__/game_object.cpython-313.pyc
+yum_yum_basket/__pycache__/game_object.cpython-314.pyc
+*.pyc

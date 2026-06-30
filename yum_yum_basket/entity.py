@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class GameObject(ABC):
+class Entity(ABC):
     def __init__(self, x, y, size, color, speed):
         """
         Эта функция складывает два числа.
