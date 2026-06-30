@@ -1,9 +1,9 @@
 # Apple object
 # functions: move, finish, build,
 
-from game_object import GameObject
+from entity import Entity
 
-class Apple(GameObject):
+class Apple(Entity):
     def __init__(self, x, y):
         super().__init__(x, y, 10, 'Green', 10)
 
