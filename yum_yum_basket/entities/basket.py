@@ -1,6 +1,6 @@
-from game_object import GameObject
+from entity import Entity
 
-class Basket(GameObject):
+class Basket(Entity):
     def __init__(self):
         super().__init__(100, 0, 10, 'Brown', 1)
 
