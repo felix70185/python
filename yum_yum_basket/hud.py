@@ -1,3 +1,5 @@
+from entities.basket import Basket
+
 
 class HUD:
     # Цвета
@@ -10,9 +12,14 @@ class HUD:
         self.font = font
 
     def draw(self, screen, game_state):
-        self.draw_text(screen, f"Счёт: {game_state.get_score()}", 10, 10, self.WHITE)
-        self.draw_text(screen, f"Жизни: {game_state.get_lives()}", 10, 40, self.WHITE)
+        self.draw_text(screen, f"Счёт: {game_state.score}", 10, 10, self.WHITE)
+        self.draw_text(screen, f"Жизни: {game_state.lives}", 10, 40, self.WHITE)
+        self.basket = Basket()
 
     def draw_text(self, screen, text, x, y, color = (255, 255, 255)):
         surface = self.font.render(text, True, color)
         screen.blit(surface, (x, y))
+
+    def draw_entities(self, screen, entities):
+        for entity in entities:
+            entity.draw(screen)

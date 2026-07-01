@@ -7,6 +7,7 @@ from hud import HUD
 class Game:
     WIDTH = 800
     HEIGHT = 600
+    entities = []
 
     def __init__(self):
         pygame.init()
@@ -16,6 +17,9 @@ class Game:
         self.font = pygame.font.Font(None, 28)
         self.hud = HUD(self.font)
         self.running = True
+
+        self.basket = Basket(self.WIDTH, self.HEIGHT)
+        self.entities.append(self.basket)
 
     def run(self):
         while self.running:

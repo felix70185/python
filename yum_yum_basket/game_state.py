@@ -4,11 +4,11 @@ class GameState:
         self.__lives = 3
 
     @property
-    def get_score(self):
+    def score(self):
         return self.__score
 
     @property
-    def get_lives(self):
+    def lives(self):
         return self.__lives
 
     def add_score(self, points):

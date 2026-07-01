@@ -1,16 +1,6 @@
 # Apple object
 # functions: move, finish, build,
+from product import Product
 
-from entity import Entity
-
-class Apple(Entity):
-    def __init__(self, x, y):
-        super().__init__(x, y, 10, 'Green', 10)
-
-    def draw(self):
-        """
-        Метод для смещения объекта вниз
-        :return: bool вышел за пределы границ или нет
-        """
-        print("Apple displayed")
-        #pygame.draw.circle(screen, self.color, (self.x, self.y), self.size)
+class Apple(Product):
+    COLOR = (255, 0, 0)
