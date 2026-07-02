@@ -1,6 +1,3 @@
-from fruits.apple import Apple
-
-
 class ProductManager():
     def __init__(self):
         self.products = []
