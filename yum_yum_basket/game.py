@@ -3,6 +3,9 @@ import pygame
 from entities.basket import Basket
 from game_state import GameState
 from hud import HUD
+from product import Product
+from product_factory import ProductFactory
+
 
 class Game:
     WIDTH = 800
@@ -24,6 +27,10 @@ class Game:
     def run(self):
         while self.running:
             self.handle_events()
+
+            product_factory = ProductFactory()
+            product_factory.create(self.WIDTH - Product.SIZE, 0)
+
             self.draw()
 
         pygame.quit()

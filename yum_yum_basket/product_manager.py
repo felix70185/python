@@ -1,4 +1,4 @@
-class ProductManager():
+class ProductManager:
     def __init__(self):
         self.products = []
 
@@ -12,3 +12,8 @@ class ProductManager():
     def draw(self, screen):
         for product in self.products:
             product.draw(screen)
+
+    def spawn(self):
+        # product = ProductFactory.create()
+        # self.add(product)
+        self.add(self)

@@ -1,8 +1,4 @@
-from entity import Entity
+from product import Product
 
-class Banana(Entity):
-    def __init__(self, x, y):
-        super().__init__(x, y, 15, 'yellow', 5)
-
-    def draw(self):
-        print(__name__)
+class Banana(Product):
+    COLOR = (255, 0, 0)

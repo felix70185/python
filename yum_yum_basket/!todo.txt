@@ -5,10 +5,36 @@
 	Яблоко и корзина возвращает текущие координаты, следовательно можем определить пересечение между объектами. Список всех продуктов хранится в ProductManager, следовательно там и будем проверять пересечение объектов. Т.е. будет метод в кот передаются координаты корзины -> ProductManager.update(basket)
 	
 	Если Яблоко коснулось корзины:
-		- Запрашиваем очки у Яблока и передаем в метод для подсчета очков -> GameState.spawn(apple.points). 
+		- Запрашиваем очки у Яблока и передаем в метод для подсчета очков -> GameState.add_score(apple.points). 
 		- Яблоко исчезает -> ProductManager.remove(apple)
-		- ProductManager.create_product()
+		- ProductManager.spawn()
 	Если улетело за экран:
 		- GameState.lose_lives()
 		- ProductManager.remove(apple)
 		- ProductManager.create_product()
+		
+Класс ProductFactory
+
+class ProductFactory():
+    PRODUCTS = {
+        1: [
+            (Apple, 90),
+            (Banana, 10)
+        ],
+        2: [
+            (Apple, 60),
+            (Banana, 30),
+            (Bomb, 10)
+        ],
+    }
+
+    def __init__(self):
+        self.level = 1
+
+    @classmethod
+    def create(self):
+        random = Random()
+        return self.PRODUCTS.get(random.randint(1,2))
+		
+# В зависимости от уровня будем показывать разные списки продуктов, с разной вероятностью
+		
