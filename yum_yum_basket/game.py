@@ -4,8 +4,7 @@ from entities.basket import Basket
 from game_state import GameState
 from hud import HUD
 from product import Product
-from product_factory import ProductFactory
-
+from product_manager import ProductManager
 
 class Game:
     WIDTH = 800
@@ -28,9 +27,15 @@ class Game:
         while self.running:
             self.handle_events()
 
-            product_factory = ProductFactory()
-            product_factory.create(self.WIDTH - Product.SIZE, 0)
+            product_manager = ProductManager()
 
+            product_manager.spawn(self.WIDTH - Product.SIZE, 0) # create new Obj
+            product_manager.update()
+
+            # Если продукт попал в корзину
+            # product.calculate()
+            # Если продукт попал за линию
+            # product.drop()
             self.draw()
 
         pygame.quit()

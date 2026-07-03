@@ -1,3 +1,6 @@
+from product_factory import ProductFactory
+
+
 class ProductManager:
     def __init__(self):
         self.products = []
@@ -13,7 +16,7 @@ class ProductManager:
         for product in self.products:
             product.draw(screen)
 
-    def spawn(self):
-        # product = ProductFactory.create()
-        # self.add(product)
-        self.add(self)
+    def spawn(self, x, y):
+        product_factory = ProductFactory()
+        product = product_factory.create(x, y)
+        self.add(product)

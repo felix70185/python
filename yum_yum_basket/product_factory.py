@@ -4,7 +4,6 @@ from fruits.apple import Apple
 from fruits.banana import Banana
 from hazards.bomb import Bomb
 
-
 class ProductFactory:
     PRODUCTS = {
         1: [

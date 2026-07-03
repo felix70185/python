@@ -1,5 +1,5 @@
 from product import Product
 
-class Banana(Product):
-    POINTS = 3
+class Pear(Product):
+    POINTS = 2
     COLOR = (255, 0, 0)
