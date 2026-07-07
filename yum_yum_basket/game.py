@@ -32,10 +32,14 @@ class Game:
             product_manager.spawn(self.WIDTH - Product.SIZE, 0) # create new Obj
             product_manager.update()
 
+
             # Если продукт попал в корзину
-            # product.calculate()
+            # product.rect.colliderect(self.basket.rect)
+            # product_manager.remove(product)
+
             # Если продукт попал за линию
-            # product.drop()
+            # product_manager.remove(product)
+            
             self.draw()
 
         pygame.quit()

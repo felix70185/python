@@ -26,3 +26,6 @@ class Product:
     @property
     def points(self):
         return self.POINTS
+
+    def on_catch(self, state):
+        state.add_score(self.POINTS)
