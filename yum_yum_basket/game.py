@@ -24,22 +24,23 @@ class Game:
         self.entities.append(self.basket)
 
     def run(self):
+        product_manager = ProductManager()
+
         while self.running:
             self.handle_events()
 
-            product_manager = ProductManager()
-
             product_manager.spawn(self.WIDTH - Product.SIZE, 0) # create new Obj
             product_manager.update()
-
+            product_manager.check_collision(self.basket, self.state)
 
             # Если продукт попал в корзину
-            # product.rect.colliderect(self.basket.rect)
+
+            # product.on_catch(self.state)
             # product_manager.remove(product)
 
             # Если продукт попал за линию
             # product_manager.remove(product)
-            
+
             self.draw()
 
         pygame.quit()

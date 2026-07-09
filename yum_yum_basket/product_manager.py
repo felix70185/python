@@ -20,3 +20,10 @@ class ProductManager:
         product_factory = ProductFactory()
         product = product_factory.create(x, y)
         self.add(product)
+
+    def check_collision(self, basket, state):
+        for product in self.products:
+            product.rect.colliderect(basket.rect)
+
+    def remove(self, product):
+        pass
