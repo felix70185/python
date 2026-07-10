@@ -4,6 +4,7 @@ from product_factory import ProductFactory
 class ProductManager:
     def __init__(self):
         self.products = []
+        self.products_to_remove = []
 
     def add(self, product):
         self.products.append(product)
@@ -25,5 +26,9 @@ class ProductManager:
         for product in self.products:
             product.rect.colliderect(basket.rect)
 
-    def remove(self, product):
+    def remove(self):
+        for product in self.products_to_remove:
+            product.remove()
+
+    def apply_changes(self, state):
         pass

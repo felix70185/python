@@ -32,14 +32,12 @@ class Game:
             product_manager.spawn(self.WIDTH - Product.SIZE, 0) # create new Obj
             product_manager.update()
             product_manager.check_collision(self.basket, self.state)
+            # TODO Собрали яблоки для удаления
+            # TODO product_manager.apply_changes(state)
 
-            # Если продукт попал в корзину
+            # TODO Повышаем уровень каждые 30 очков
 
             # product.on_catch(self.state)
-            # product_manager.remove(product)
-
-            # Если продукт попал за линию
-            # product_manager.remove(product)
 
             self.draw()
 

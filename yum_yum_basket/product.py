@@ -29,3 +29,6 @@ class Product:
 
     def on_catch(self, state):
         state.add_score(self.POINTS)
+
+    def on_miss(self, state):
+        state.lose_lives()
