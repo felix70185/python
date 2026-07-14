@@ -26,7 +26,10 @@ class ProductManager:
         for product in self.products:
             product.rect.colliderect(basket.rect)
 
-    def remove(self):
+    def remove(self, product):
+        self.products_to_remove += [product]
+
+    def products_to_remove_clear(self):
         for product in self.products_to_remove:
             product.remove()
 
