@@ -9,6 +9,8 @@ from product_manager import ProductManager
 class Game:
     WIDTH = 800
     HEIGHT = 600
+
+    PRODUCTS = {}
     entities = []
 
     def __init__(self):
@@ -26,11 +28,14 @@ class Game:
     def run(self):
         product_manager = ProductManager()
 
+        clock = pygame.time.Clock()
         while self.running:
+            delta_time = clock.tick(60)
+
             self.handle_events()
 
             product_manager.spawn(self.WIDTH - Product.SIZE, 0) # create new Obj
-            product_manager.update()
+            product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
             product_manager.check_collision(self.basket, self.state)
             # TODO Собрали яблоки для удаления
             # TODO product_manager.apply_changes(state)

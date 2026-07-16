@@ -8,10 +8,19 @@ class Product:
 
     def __init__(self, x, y):
         self._rect = pygame.Rect(x, y, self.SIZE, self.SIZE)
+        self._is_dead = False
 
     @property
     def rect(self):
         return self._rect
+
+    @property
+    def points(self):
+        return self.POINTS
+
+    @property
+    def is_dead(self):
+        return self._is_dead
 
     def update(self):
         self._rect.y += self.SPEED
@@ -22,10 +31,6 @@ class Product:
             self.COLOR,
             self._rect
         )
-
-    @property
-    def points(self):
-        return self.POINTS
 
     def on_catch(self, state):
         state.add_score(self.POINTS)

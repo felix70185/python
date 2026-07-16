@@ -5,11 +5,16 @@ class ProductManager:
     def __init__(self):
         self.products = []
         self.products_to_remove = []
+        self._spawn_timer = 0
+        self._spawn_interval = 1500 # ms
 
-    def add(self, product):
-        self.products.append(product)
+    def update(self, delta_time):
+        self._spawn_timer += delta_time
 
-    def update(self):
+        if self._spawn_timer >= self._spawn_interval:
+            self.spawn()
+            self._spawn_timer = 0
+
         for product in self.products:
             product.update()
 
@@ -20,13 +25,13 @@ class ProductManager:
     def spawn(self, x, y):
         product_factory = ProductFactory()
         product = product_factory.create(x, y)
-        self.add(product)
+        self.products.append(product)
 
     def check_collision(self, basket, state):
         for product in self.products:
             product.rect.colliderect(basket.rect)
 
-    def remove(self, product):
+    def cleanup(self, product):
         self.products_to_remove += [product]
 
     def products_to_remove_clear(self):
