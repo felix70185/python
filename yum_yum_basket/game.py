@@ -11,7 +11,7 @@ class Game:
     HEIGHT = 600
 
     PRODUCTS = {}
-    entities = []
+    ENTITIES = []
 
     def __init__(self):
         pygame.init()
@@ -23,7 +23,7 @@ class Game:
         self.running = True
 
         self.basket = Basket(self.WIDTH, self.HEIGHT)
-        self.entities.append(self.basket)
+        self.ENTITIES.append(self.basket)
 
     def run(self):
         next_level_score = 100

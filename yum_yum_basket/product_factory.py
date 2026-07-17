@@ -1,3 +1,4 @@
+import pprint
 from random import Random
 
 from fruits.apple import Apple
@@ -22,15 +23,15 @@ class ProductFactory:
 
     @classmethod
     def create(self, x, y, level):
-
         random = Random()
-        product = self.PRODUCTS.get(random.randint(1,2))
+        #product = self.PRODUCTS.get(level)[random.randint(0,1)]
+        product = Apple(x, y)
         # weighted_products = random.choices(self.PRODUCTS, weights=[10, 3, 1], k=5)
 
-        product.x = x
-        product.y = y
-        speed = product.speed + level
-        product.speed = speed
+        product.rect.x = x
+        product.rect.y = y
+        #speed = product.speed + level
+        #product.speed = speed
 
         return product
 
