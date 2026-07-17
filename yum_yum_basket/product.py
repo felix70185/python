@@ -6,9 +6,10 @@ class Product:
     COLOR = (255, 255, 255)
     POINTS = 0
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, speed):
         self._rect = pygame.Rect(x, y, self.SIZE, self.SIZE)
         self._is_dead = False
+        self.SPEED = speed
 
     @property
     def rect(self):
@@ -21,6 +22,10 @@ class Product:
     @property
     def is_dead(self):
         return self._is_dead
+
+    @property
+    def speed(self):
+        return self.SPEED
 
     def update(self):
         self._rect.y += self.SPEED

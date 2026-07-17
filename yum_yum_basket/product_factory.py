@@ -21,13 +21,16 @@ class ProductFactory:
         self.level = 1
 
     @classmethod
-    def create(self, x, y):
+    def create(self, x, y, level):
+
         random = Random()
         product = self.PRODUCTS.get(random.randint(1,2))
         # weighted_products = random.choices(self.PRODUCTS, weights=[10, 3, 1], k=5)
 
         product.x = x
         product.y = y
+        speed = product.speed + level
+        product.speed = speed
 
         return product
 

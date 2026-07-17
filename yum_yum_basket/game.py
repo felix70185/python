@@ -26,15 +26,20 @@ class Game:
         self.entities.append(self.basket)
 
     def run(self):
+        next_level_score = 100
         product_manager = ProductManager()
 
         clock = pygame.time.Clock()
         while self.running:
             delta_time = clock.tick(60)
 
+            if self.state.score >= next_level_score:
+                self.state.level_up()
+                next_level_score *= 2
+
             self.handle_events()
 
-            product_manager.spawn(self.WIDTH - Product.SIZE, 0) # create new Obj
+            product_manager.spawn(self.WIDTH - Product.SIZE, 0, self.state.level) # create new Obj
             product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
             product_manager.check_collision(self.basket, self.state)
             # TODO Собрали яблоки для удаления

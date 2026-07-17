@@ -22,9 +22,9 @@ class ProductManager:
         for product in self.products:
             product.draw(screen)
 
-    def spawn(self, x, y):
+    def spawn(self, x, y, level):
         product_factory = ProductFactory()
-        product = product_factory.create(x, y)
+        product = product_factory.create(x, y, level)
         self.products.append(product)
 
     def check_collision(self, basket, state):
