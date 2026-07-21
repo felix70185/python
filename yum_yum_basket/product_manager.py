@@ -1,5 +1,6 @@
+from fruits.apple import Apple
 from product_factory import ProductFactory
-
+from pprint import pprint
 
 class ProductManager:
     def __init__(self):
@@ -12,10 +13,11 @@ class ProductManager:
         self._spawn_timer += delta_time
 
         if self._spawn_timer >= self._spawn_interval:
-            self.spawn()
+            #self.spawn()
             self._spawn_timer = 0
 
         for product in self.products:
+            pprint(product)
             product.update()
 
     def draw(self, screen):
@@ -24,8 +26,10 @@ class ProductManager:
 
     def spawn(self, x, y, level):
         product_factory = ProductFactory()
-        product = product_factory.create(x, y, level)
-        self.products.append(product)
+
+        if len(self.products) == 0:
+            product = product_factory.create(x, y, level) #level нужен что бы назначить скорость объекта
+            self.products.append(product)
 
     def check_collision(self, basket, state):
         for product in self.products:
@@ -37,6 +41,10 @@ class ProductManager:
     def products_to_remove_clear(self):
         for product in self.products_to_remove:
             product.remove()
+
+    def draw(self, screen):
+        for product in self.products:
+            product.draw(screen)
 
     def apply_changes(self, state):
         pass

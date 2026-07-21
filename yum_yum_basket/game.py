@@ -38,8 +38,7 @@ class Game:
                 next_level_score *= 2
 
             self.handle_events()
-
-            product_manager.spawn(self.WIDTH - Product.SIZE, 0, self.state.level) # create new Obj
+            product_manager.spawn(self.WIDTH - Product.SIZE, 0, self.state.level) # TODO пока ограничила 1 яблоком
             product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
             product_manager.check_collision(self.basket, self.state)
             # TODO Собрали яблоки для удаления
@@ -48,7 +47,7 @@ class Game:
             # TODO Повышаем уровень каждые 30 очков
 
             # product.on_catch(self.state)
-
+            product_manager.draw(self.screen)
             self.draw()
 
         pygame.quit()
@@ -62,3 +61,4 @@ class Game:
         self.screen.fill((30, 30, 30))
         self.hud.draw(self.screen, self.state)
         pygame.display.flip()
+
