@@ -5,6 +5,7 @@ from game_state import GameState
 from hud import HUD
 from product import Product
 from product_manager import ProductManager
+import random
 
 class Game:
     WIDTH = 800
@@ -31,20 +32,23 @@ class Game:
 
         clock = pygame.time.Clock()
         while self.running:
+            self.handle_events()
+
             delta_time = clock.tick(60)
 
             if self.state.score >= next_level_score:
                 self.state.level_up()
                 next_level_score *= 2
 
-            self.handle_events()
-            self.product_manager.spawn(self.WIDTH - Product.SIZE, 0, self.state.level) # TODO пока ограничила 1 яблоком
+            number = random.randint(1, 4)
+            self.product_manager.spawn( number*200 - 200 + Product.SIZE, 0, self.state.level) # TODO пока ограничила 1-м яблоком
             self.product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
             self.basket.update(delta_time)
 
             self.product_manager.check_collision(self.basket, self.state)
             self.product_manager.check_screen_collision(self.HEIGHT, self.state)
 
+            self.product_manager.cleanup()
             # TODO Собрали яблоки для удаления
             # TODO product_manager.apply_changes(state)
 

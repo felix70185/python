@@ -20,7 +20,8 @@ class ProductManager:
 
     def draw(self, screen):
         for product in self.products:
-            product.draw(screen)
+            if product.is_alive:
+                product.draw(screen)
 
     def spawn(self, x, y, level):
         product_factory = ProductFactory()
@@ -31,20 +32,26 @@ class ProductManager:
 
     def check_collision(self, basket, state):
         for product in self.products:
-            if product.rect.colliderect(basket.rect) and not product.is_dead:
+            if product.rect.colliderect(basket.rect) and product.is_alive:
                 product.on_catch(state)
+                product.destroy()
 
     def check_screen_collision(self, screen_height, state):
         for product in self.products:
-            if product.rect.bottom > screen_height and not product.is_dead:
+            if product.rect.bottom > screen_height and product.is_alive:
                 product.on_miss(state)
+                product.destroy()
 
-    def cleanup(self, product):
-        self.products_to_remove += [product]
+    def cleanup(self):
+        alive_product = []
+        for product in self.products:
+            if product.is_alive:
+                alive_product.append(product)
 
-    def products_to_remove_clear(self):
-        for product in self.products_to_remove:
-            product.remove()
+        self.products = alive_product
 
     def apply_changes(self, state):
         pass
+
+    def product_count(self):
+        return len(self.products)

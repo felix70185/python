@@ -8,7 +8,7 @@ class Product:
 
     def __init__(self, x, y, speed = 0):
         self._rect = pygame.Rect(x, y, self.SIZE, self.SIZE)
-        self._is_dead = False
+        self._is_alive = True
         self.SPEED = self.SPEED if speed == 0 else speed
 
     @property
@@ -20,8 +20,8 @@ class Product:
         return self.POINTS
 
     @property
-    def is_dead(self):
-        return self._is_dead
+    def is_alive(self):
+        return self._is_alive
 
     @property
     def speed(self):
@@ -39,11 +39,9 @@ class Product:
 
     def on_catch(self, state):
         state.add_score(self.POINTS)
-        self.remove()
 
     def on_miss(self, state):
         state.lose_lives()
-        self.remove()
 
-    def remove(self):
-        self._is_dead = True
+    def destroy(self):
+        self._is_alive = False
