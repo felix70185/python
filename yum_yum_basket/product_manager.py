@@ -42,9 +42,5 @@ class ProductManager:
         for product in self.products_to_remove:
             product.remove()
 
-    def draw(self, screen):
-        for product in self.products:
-            product.draw(screen)
-
     def apply_changes(self, state):
         pass

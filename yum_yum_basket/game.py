@@ -24,10 +24,10 @@ class Game:
 
         self.basket = Basket(self.WIDTH, self.HEIGHT)
         self.ENTITIES.append(self.basket)
+        self.product_manager = ProductManager()
 
     def run(self):
         next_level_score = 100
-        product_manager = ProductManager()
 
         clock = pygame.time.Clock()
         while self.running:
@@ -38,16 +38,16 @@ class Game:
                 next_level_score *= 2
 
             self.handle_events()
-            product_manager.spawn(self.WIDTH - Product.SIZE, 0, self.state.level) # TODO пока ограничила 1 яблоком
-            product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
-            product_manager.check_collision(self.basket, self.state)
+            self.product_manager.spawn(self.WIDTH - Product.SIZE, 0, self.state.level) # TODO пока ограничила 1 яблоком
+            self.product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
+            self.product_manager.check_collision(self.basket, self.state)
             # TODO Собрали яблоки для удаления
             # TODO product_manager.apply_changes(state)
 
             # TODO Повышаем уровень каждые 30 очков
 
             # product.on_catch(self.state)
-            product_manager.draw(self.screen)
+
             self.draw()
 
         pygame.quit()
@@ -59,6 +59,7 @@ class Game:
 
     def draw(self):
         self.screen.fill((30, 30, 30))
+        self.basket.draw(self.screen)
+        self.product_manager.draw(self.screen)
         self.hud.draw(self.screen, self.state)
         pygame.display.flip()
-

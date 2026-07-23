@@ -1,4 +1,5 @@
 
+# Интерфейс игрока
 class HUD:
     # Цвета
     WHITE = (255, 255, 255)
@@ -16,7 +17,3 @@ class HUD:
     def draw_text(self, screen, text, x, y, color = (255, 255, 255)):
         surface = self.font.render(text, True, color)
         screen.blit(surface, (x, y))
-
-    def draw_entities(self, screen, entities):
-        for entity in entities:
-            entity.draw(screen)
