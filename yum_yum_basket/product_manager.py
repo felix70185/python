@@ -1,6 +1,5 @@
-from fruits.apple import Apple
+from product import Product
 from product_factory import ProductFactory
-from pprint import pprint
 
 class ProductManager:
     def __init__(self):
@@ -17,7 +16,6 @@ class ProductManager:
             self._spawn_timer = 0
 
         for product in self.products:
-            pprint(product)
             product.update()
 
     def draw(self, screen):
@@ -33,7 +31,13 @@ class ProductManager:
 
     def check_collision(self, basket, state):
         for product in self.products:
-            product.rect.colliderect(basket.rect)
+            if product.rect.colliderect(basket.rect) and not product.is_dead:
+                product.on_catch(state)
+
+    def check_screen_collision(self, screen_height, state):
+        for product in self.products:
+            if product.rect.bottom > screen_height and not product.is_dead:
+                product.on_miss(state)
 
     def cleanup(self, product):
         self.products_to_remove += [product]

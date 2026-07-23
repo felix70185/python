@@ -40,13 +40,15 @@ class Game:
             self.handle_events()
             self.product_manager.spawn(self.WIDTH - Product.SIZE, 0, self.state.level) # TODO пока ограничила 1 яблоком
             self.product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
+            self.basket.update(delta_time)
+
             self.product_manager.check_collision(self.basket, self.state)
+            self.product_manager.check_screen_collision(self.HEIGHT, self.state)
+
             # TODO Собрали яблоки для удаления
             # TODO product_manager.apply_changes(state)
 
             # TODO Повышаем уровень каждые 30 очков
-
-            # product.on_catch(self.state)
 
             self.draw()
 

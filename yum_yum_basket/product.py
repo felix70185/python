@@ -39,6 +39,11 @@ class Product:
 
     def on_catch(self, state):
         state.add_score(self.POINTS)
+        self.remove()
 
     def on_miss(self, state):
         state.lose_lives()
+        self.remove()
+
+    def remove(self):
+        self._is_dead = True

@@ -8,7 +8,7 @@ class Entity():
     def rect(self):
         return self._rect
 
-    def update(self):
+    def update(self, delta_time):
         pass
 
     def draw(self, screen):
