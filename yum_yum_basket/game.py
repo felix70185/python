@@ -40,8 +40,10 @@ class Game:
                 self.state.level_up()
                 next_level_score *= 2
 
+            # TODO пока ограничила 1-м яблоком
+            # Разделил на 4 секции
             number = random.randint(1, 4)
-            self.product_manager.spawn( number*200 - 200 + Product.SIZE, 0, self.state.level) # TODO пока ограничила 1-м яблоком
+            self.product_manager.spawn( number*200 - 200 + Product.SIZE, 0, self.state.level)
             self.product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
             self.basket.update(delta_time)
 
@@ -49,10 +51,7 @@ class Game:
             self.product_manager.check_screen_collision(self.HEIGHT, self.state)
 
             self.product_manager.cleanup()
-            # TODO Собрали яблоки для удаления
             # TODO product_manager.apply_changes(state)
-
-            # TODO Повышаем уровень каждые 30 очков
 
             self.draw()
 

@@ -1,4 +1,3 @@
-from product import Product
 from product_factory import ProductFactory
 
 class ProductManager:
@@ -12,7 +11,6 @@ class ProductManager:
         self._spawn_timer += delta_time
 
         if self._spawn_timer >= self._spawn_interval:
-            #self.spawn()
             self._spawn_timer = 0
 
         for product in self.products:
