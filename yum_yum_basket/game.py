@@ -3,9 +3,7 @@ import pygame
 from entities.basket import Basket
 from game_state import GameState
 from hud import HUD
-from product import Product
 from product_manager import ProductManager
-import random
 
 class Game:
     WIDTH = 800
@@ -26,9 +24,9 @@ class Game:
         self.basket = Basket(self.WIDTH, self.HEIGHT)
         self.ENTITIES.append(self.basket)
         self.product_manager = ProductManager()
+        self.next_level_score = 3
 
     def run(self):
-        next_level_score = 100
 
         clock = pygame.time.Clock()
         while self.running:
@@ -36,14 +34,10 @@ class Game:
 
             delta_time = clock.tick(60)
 
-            if self.state.score >= next_level_score:
-                self.state.level_up()
-                next_level_score *= 2
+            self.check_level_up()
 
             # TODO пока ограничила 1-м яблоком
-            # Разделил на 4 секции
-            number = random.randint(1, 4)
-            self.product_manager.spawn( number*200 - 200 + Product.SIZE, 0, self.state.level)
+            self.product_manager.spawn( self.state.level)
             self.product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
             self.basket.update(delta_time)
 
@@ -52,7 +46,7 @@ class Game:
 
             self.product_manager.cleanup()
             # TODO product_manager.apply_changes(state)
-            # test
+
             self.draw()
 
         pygame.quit()
@@ -68,3 +62,9 @@ class Game:
         self.product_manager.draw(self.screen)
         self.hud.draw(self.screen, self.state)
         pygame.display.flip()
+
+
+    def check_level_up(self):
+        if self.state.score >= self.next_level_score:
+            self.next_level_score = self.state.level*5
+            self.state.level_up()

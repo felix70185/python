@@ -1,4 +1,6 @@
 from product_factory import ProductFactory
+import random
+from product import Product
 
 class ProductManager:
     def __init__(self):
@@ -6,6 +8,7 @@ class ProductManager:
         self.products_to_remove = []
         self._spawn_timer = 0
         self._spawn_interval = 1500 # ms
+        self.product_factory = ProductFactory()
 
     def update(self, delta_time):
         self._spawn_timer += delta_time
@@ -21,11 +24,15 @@ class ProductManager:
             if product.is_alive:
                 product.draw(screen)
 
-    def spawn(self, x, y, level):
-        product_factory = ProductFactory()
+    def spawn(self, level):
+
+        # Разделил на 4 секции
+        number = random.randint(1, 4)
+        x = number * 200 - 200 + Product.SIZE
+        y = 0
 
         if len(self.products) == 0:
-            product = product_factory.create(x, y, level) #level нужен что бы назначить скорость объекта
+            product = self.product_factory.create(x, y, level) #level нужен что бы назначить скорость объекта
             self.products.append(product)
 
     def check_collision(self, basket, state):
