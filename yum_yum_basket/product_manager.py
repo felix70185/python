@@ -17,7 +17,7 @@ class ProductManager:
             self._spawn_timer = 0
 
         for product in self.products:
-            product.update()
+            product.update(delta_time)
 
     def draw(self, screen):
         for product in self.products:
@@ -35,15 +35,15 @@ class ProductManager:
             product = self.product_factory.create(x, y, level) #level нужен что бы назначить скорость объекта
             self.products.append(product)
 
-    def check_collision(self, basket, state):
+    def check_collision(self, basket, screen_height, state):
         for product in self.products:
-            if product.rect.colliderect(basket.rect) and product.is_alive:
+            if product.is_dead:
+                continue
+
+            if product.rect.colliderect(basket.rect):
                 product.on_catch(state)
                 product.destroy()
-
-    def check_screen_collision(self, screen_height, state):
-        for product in self.products:
-            if product.rect.bottom > screen_height and product.is_alive:
+            elif product.rect.bottom > screen_height:
                 product.on_miss(state)
                 product.destroy()
 

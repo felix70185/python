@@ -2,14 +2,14 @@ import pygame
 
 class Product:
     SIZE = 30
-    SPEED = 5
+    DEFAULT_SPEED = 200
     COLOR = (255, 255, 255)
     POINTS = 0
 
     def __init__(self, x, y, speed = 0):
         self._rect = pygame.Rect(x, y, self.SIZE, self.SIZE)
         self._is_alive = True
-        self.SPEED = self.SPEED if speed == 0 else speed
+        self._speed = self.DEFAULT_SPEED if speed == 0 else speed
 
     @property
     def rect(self):
@@ -24,11 +24,15 @@ class Product:
         return self._is_alive
 
     @property
-    def speed(self):
-        return self.SPEED
+    def is_dead(self):
+        return not self._is_alive
 
-    def update(self):
-        self._rect.y += self.SPEED
+    @property
+    def speed(self):
+        return self._speed
+
+    def update(self, delta_time):
+        self._rect.y += self._speed*delta_time/1000
 
     def draw(self, screen):
         pygame.draw.rect(
