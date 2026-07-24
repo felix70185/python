@@ -5,7 +5,6 @@ from product import Product
 class ProductManager:
     def __init__(self):
         self.products = []
-        self.products_to_remove = []
         self._spawn_timer = 0
         self._spawn_interval = 1500 # ms
         self.product_factory = ProductFactory()
