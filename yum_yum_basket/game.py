@@ -52,7 +52,7 @@ class Game:
 
             self.product_manager.cleanup()
             # TODO product_manager.apply_changes(state)
-
+            # test
             self.draw()
 
         pygame.quit()
