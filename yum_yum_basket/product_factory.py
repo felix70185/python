@@ -1,4 +1,3 @@
-import pprint
 from random import Random
 
 from fruits.apple import Apple
