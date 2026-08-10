@@ -1,6 +1,3 @@
-# This is a sample Python script.
-from fruits.apple import Apple
-
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 # Яблоня с которой падают яблоки и червячки или яблоко из кот выходит червяк ), бомобочки
