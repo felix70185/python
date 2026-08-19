@@ -3,16 +3,33 @@ import random
 from product import Product
 
 class ProductManager:
+    LEVEL_CONFIG = {
+        1: {
+            "spawn_interval": 3500,
+            "speed": 200,
+        },
+        2: {
+            "spawn_interval": 2500,
+            "speed": 240,
+        },
+        3: {
+            "spawn_interval": 1500,
+            "speed": 280,
+        },
+    }
+
     def __init__(self):
         self.products = []
         self._spawn_timer = 0
-        self._spawn_interval = 1500 # ms
         self.product_factory = ProductFactory()
 
-    def update(self, delta_time):
+    def update(self, delta_time, state):
         self._spawn_timer += delta_time
 
-        if self._spawn_timer >= self._spawn_interval:
+        level_config = self.get_level_config(state.level)
+
+        if self._spawn_timer >= level_config["spawn_interval"]:
+            self.spawn(level_config["speed"])
             self._spawn_timer = 0
 
         for product in self.products:
@@ -23,16 +40,15 @@ class ProductManager:
             if product.is_alive:
                 product.draw(screen)
 
-    def spawn(self, level):
+    def spawn(self, speed):
 
         # Разделил на 4 секции
         number = random.randint(1, 4)
         x = number * 200 - 200 + Product.SIZE
         y = 0
 
-        if len(self.products) == 0:
-            product = self.product_factory.create(x, y, level) #level нужен что бы назначить скорость объекта
-            self.products.append(product)
+        product = self.product_factory.create(x, y, speed)
+        self.products.append(product)
 
     def check_collision(self, basket, screen_height, state):
         for product in self.products:
@@ -54,8 +70,7 @@ class ProductManager:
 
         self.products = alive_product
 
-    def apply_changes(self, state):
-        pass
-
-    def product_count(self):
-        return len(self.products)
+    def get_level_config(self, level):
+        max_lvl = max(self.LEVEL_CONFIG.keys())
+        lvl = max_lvl if level > max_lvl else level
+        return self.LEVEL_CONFIG[lvl]

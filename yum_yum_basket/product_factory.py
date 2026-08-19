@@ -21,7 +21,7 @@ class ProductFactory:
         self.level = 1
 
     @classmethod
-    def create(self, x, y, level):
+    def create(self, x, y, speed):
         random = Random()
         #product = self.PRODUCTS.get(level)[random.randint(0,1)]
         product = Apple(x, y)
@@ -29,7 +29,6 @@ class ProductFactory:
 
         product.rect.x = x
         product.rect.y = y
-        #speed = product.speed + level
         #product.speed = speed
 
         return product

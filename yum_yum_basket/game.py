@@ -37,8 +37,7 @@ class Game:
             self.check_level_up()
 
             # TODO пока ограничила 1-м яблоком
-            self.product_manager.spawn( self.state.level)
-            self.product_manager.update(delta_time) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
+            self.product_manager.update(delta_time, self.state) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
             self.basket.update(delta_time)
 
             self.product_manager.check_collision(self.basket, self.HEIGHT, self.state)
