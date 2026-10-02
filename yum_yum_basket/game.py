@@ -36,7 +36,7 @@ class Game:
 
             self.check_level_up()
 
-            # TODO пока ограничила 1-м яблоком
+            # TODO пока ограничил 1-м яблоком
             self.product_manager.update(delta_time, self.state) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
             self.basket.update(delta_time)
 
