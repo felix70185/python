@@ -5,17 +5,6 @@ from fruits.banana import Banana
 from hazards.bomb import Bomb
 
 class ProductFactory:
-    PRODUCTS = {
-        1: [
-            (Apple, 90),
-            (Banana, 10)
-        ],
-        2: [
-            (Apple, 60),
-            (Banana, 30),
-            (Bomb, 10)
-        ],
-    }
 
     def __init__(self):
         self.level = 1

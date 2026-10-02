@@ -2,19 +2,35 @@ from product_factory import ProductFactory
 import random
 from product import Product
 
+from fruits.apple import Apple
+from fruits.banana import Banana
+from hazards.bomb import Bomb
+
 class ProductManager:
     LEVEL_CONFIG = {
         1: {
             "spawn_interval": 3500,
             "speed": 200,
+            "products": [
+                (Apple, 100),
+            ]
         },
         2: {
             "spawn_interval": 2500,
             "speed": 240,
+            "products": [
+                (Apple, 80),
+                (Bomb, 20)
+            ]
         },
         3: {
             "spawn_interval": 1500,
             "speed": 280,
+            "products": [
+                (Apple, 60),
+                (Banana, 30),
+                (Bomb, 10)
+            ]
         },
     }
 
