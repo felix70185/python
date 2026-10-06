@@ -27,7 +27,6 @@ class Game:
         self.next_level_score = 3
 
     def run(self):
-
         clock = pygame.time.Clock()
         while self.running:
             self.handle_events()
