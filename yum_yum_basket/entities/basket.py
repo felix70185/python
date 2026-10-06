@@ -1,5 +1,6 @@
 import pygame
 from entity import Entity
+from resource_manager import ResourceManager
 
 class Basket(Entity):
     WIDTH = 90
@@ -11,6 +12,7 @@ class Basket(Entity):
         y = screen_height - 60
         self.screen_width = screen_width
         self.screen_height = screen_height
+        self._res = ResourceManager()
 
         super().__init__(x, y, self.WIDTH, self.HEIGHT)
 
@@ -30,8 +32,5 @@ class Basket(Entity):
             self.rect.right = self.screen_width
 
     def draw(self, screen):
-        pygame.draw.rect(
-            screen,
-            (30,170,255),
-            self.rect
-        )
+        img = self._res.load_image("basket.png")
+        screen.blit(img, self._rect)
