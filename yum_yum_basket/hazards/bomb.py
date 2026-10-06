@@ -5,3 +5,6 @@ class Bomb(Product):
 
     def on_catch(self, state):
         state.lose_lives()
+
+    def on_miss(self, state):
+        pass

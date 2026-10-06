@@ -1,3 +1,4 @@
+import product_type
 from product_factory import ProductFactory
 import random
 from product import Product
@@ -45,7 +46,7 @@ class ProductManager:
         level_config = self.get_level_config(state.level)
 
         if self._spawn_timer >= level_config["spawn_interval"]:
-            self.spawn(level_config["speed"])
+            self.spawn(state)
             self._spawn_timer = 0
 
         for product in self.products:
@@ -56,14 +57,18 @@ class ProductManager:
             if product.is_alive:
                 product.draw(screen)
 
-    def spawn(self, speed):
+    def spawn(self, state):
+        level_config = self.get_level_config(state.level)
+        speed = level_config["speed"]
 
         # Разделил на 4 секции
         number = random.randint(1, 4)
         x = number * 200 - 200 + Product.SIZE
         y = 0
 
-        product = self.product_factory.create(x, y, speed)
+        product_type = random.choices(population=[item[0] for item in level_config["products"]], weights=[item[1] for item in level_config["products"]],k=1)[0]
+        product = self.product_factory.create(product_type, x, y, speed)
+
         self.products.append(product)
 
     def check_collision(self, basket, screen_height, state):
