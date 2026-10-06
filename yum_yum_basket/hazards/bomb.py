@@ -2,7 +2,7 @@ from product import Product
 
 class Bomb(Product):
     COLOR = (255, 0, 0)
-
+    IMAGE = 'bomb.png'
     def on_catch(self, state):
         state.lose_lives()
 
