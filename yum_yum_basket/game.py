@@ -4,6 +4,7 @@ from entities.basket import Basket
 from game_state import GameState
 from hud import HUD
 from product_manager import ProductManager
+from resource_manager import ResourceManager
 
 class Game:
     WIDTH = 800
@@ -20,10 +21,11 @@ class Game:
         self.font = pygame.font.Font(None, 28)
         self.hud = HUD(self.font)
         self.running = True
+        self._resource_manager = ResourceManager()
 
         self.basket = Basket(self.WIDTH, self.HEIGHT)
         self.ENTITIES.append(self.basket)
-        self.product_manager = ProductManager()
+        self.product_manager = ProductManager(self._resource_manager)
         self.next_level_score = 3
 
     def run(self):

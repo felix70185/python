@@ -35,10 +35,10 @@ class ProductManager:
         },
     }
 
-    def __init__(self):
+    def __init__(self, resource_manager):
         self.products = []
         self._spawn_timer = 0
-        self.product_factory = ProductFactory()
+        self.product_factory = ProductFactory(resource_manager)
 
     def update(self, delta_time, state):
         self._spawn_timer += delta_time

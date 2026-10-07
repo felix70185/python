@@ -1,5 +1,4 @@
 import pygame
-from resource_manager import ResourceManager
 
 class Product:
     SIZE = 30
@@ -8,11 +7,11 @@ class Product:
     POINTS = 0
     IMAGE = 'apple.png'
 
-    def __init__(self, x, y, speed = 0):
+    def __init__(self, x, y, speed, resource_manager):
         self._rect = pygame.Rect(x, y, self.SIZE, self.SIZE)
         self._is_alive = True
         self._speed = self.DEFAULT_SPEED if speed == 0 else speed
-        self._res = ResourceManager()
+        self.resource_manager = resource_manager
 
     @property
     def rect(self):
@@ -43,7 +42,7 @@ class Product:
         #     self.COLOR,
         #     self._rect
         # )
-        img = self._res.load_image(self.IMAGE)
+        img = self.resource_manager.load_image(self.IMAGE)
         screen.blit(img, self._rect)
 
     def on_catch(self, state):
