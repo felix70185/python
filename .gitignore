@@ -17,3 +17,4 @@ yum_yum_basket/*.pyc
 yum_yum_basket/__pycache__/game_object.cpython-313.pyc
 yum_yum_basket/__pycache__/game_object.cpython-314.pyc
 *.pyc
+yum_yum_basket/images/background.png
