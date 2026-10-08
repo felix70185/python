@@ -3,7 +3,6 @@ import pygame
 class Product:
     SIZE = 30
     DEFAULT_SPEED = 200
-    COLOR = (255, 255, 255)
     POINTS = 0
     IMAGE = 'apple.png'
 
@@ -11,7 +10,7 @@ class Product:
         self._rect = pygame.Rect(x, y, self.SIZE, self.SIZE)
         self._is_alive = True
         self._speed = self.DEFAULT_SPEED if speed == 0 else speed
-        self.resource_manager = resource_manager
+        self._img = resource_manager.load_image(self.IMAGE)
 
     @property
     def rect(self):
@@ -37,13 +36,7 @@ class Product:
         self._rect.y += self._speed*delta_time/1000
 
     def draw(self, screen):
-        # pygame.draw.rect(
-        #     screen,
-        #     self.COLOR,
-        #     self._rect
-        # )
-        img = self.resource_manager.load_image(self.IMAGE)
-        screen.blit(img, self._rect)
+        screen.blit(self._img, self._rect)
 
     def on_catch(self, state):
         state.add_score(self.POINTS)
