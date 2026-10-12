@@ -30,25 +30,28 @@ class Game:
 
     def run(self):
         clock = pygame.time.Clock()
-        while self.running:
-            self.handle_events()
 
+        while self.running:
             delta_time = clock.tick(60)
 
-            self.check_level_up()
+            self.handle_events()
 
-            # TODO пока ограничил 1-м яблоком
-            self.product_manager.update(delta_time, self.state) # TODO Нужно передать delta_time сколько прошло времени/миллисекунд
-            self.basket.update(delta_time)
-
-            self.product_manager.check_collision(self.basket, self.HEIGHT, self.state)
-
-            self.product_manager.cleanup()
-            # TODO product_manager.apply_changes(state)
+            self.update(delta_time)
 
             self.draw()
 
         pygame.quit()
+
+    def update(self, delta_time):
+        self.check_level_up()
+
+        self.product_manager.update(delta_time, self.state)
+        self.basket.update(delta_time)
+
+        self.product_manager.check_collision(self.basket, self.HEIGHT, self.state)
+
+        self.product_manager.cleanup()
+        # TODO product_manager.apply_changes(state)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -61,7 +64,6 @@ class Game:
         self.product_manager.draw(self.screen)
         self.hud.draw(self.screen, self.state)
         pygame.display.flip()
-
 
     def check_level_up(self):
         if self.state.score >= self.next_level_score:
