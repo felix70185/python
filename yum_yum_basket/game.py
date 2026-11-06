@@ -1,3 +1,5 @@
+import os
+
 import pygame
 
 from entities.basket import Basket
@@ -27,6 +29,8 @@ class Game:
         self.ENTITIES.append(self.basket)
         self.product_manager = ProductManager(self._resource_manager)
         self.next_level_score = 3
+        self.background = self._resource_manager.load_image("background.png", (self.WIDTH, self.HEIGHT) )
+        self.hud = HUD(self.font)
 
     def run(self):
         clock = pygame.time.Clock()
@@ -59,7 +63,9 @@ class Game:
                 self.running = False
 
     def draw(self):
-        self.screen.fill((30, 30, 30))
+        self.screen.blit(self.background, (0, 0))
+
+        #self.screen.fill((30, 30, 30))
         self.basket.draw(self.screen)
         self.product_manager.draw(self.screen)
         self.hud.draw(self.screen, self.state)
